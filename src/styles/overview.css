@@ -78,6 +78,10 @@ section div {
 	justify-content: space-between;
 }
 
+section div a {
+	text-decoration: none;
+}
+
 article {
 	background-color: var(--secondary-color);
 	color: var(--text-color);
