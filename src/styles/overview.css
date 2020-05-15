@@ -115,35 +115,3 @@ article h3::before {
 	opacity: 0.75;
 	display: block;
 }
-
-#page-transition {
-	background-color: var(--highlight-color);
-	width: 10px;
-	height: 10px;
-	position: fixed;
-	top: -9999px;
-	left: -9999px;
-}
-
-#page-transition.show {
-	animation: grow 1s forwards, color-fade 500ms 500ms forwards;
-}
-
-@keyframes grow {
-	to {
-		top: 0;
-		left: 0;
-		height: 100vh;
-		width: 100vw;
-	}
-}
-
-@keyframes color-fade {
-	from {
-		background-color: var(--highlight-color);
-	}
-
-	to {
-		background-color: var(--background-color);
-	}
-}
