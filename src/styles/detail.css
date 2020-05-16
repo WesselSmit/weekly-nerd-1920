@@ -133,7 +133,8 @@ h5 {
 	font-size: 20px;
 }
 
-ul {
+ul,
+ol {
 	font-family: "NexaLight", Arial, Helvetica, sans-serif;
 	font-size: 18px;
 }
@@ -147,8 +148,20 @@ li:not(:last-of-type) {
 	margin-bottom: 5px;
 }
 
-ul p {
+ul p,
+ol p {
 	margin-left: -40px;
 	line-height: 1.2;
 	margin-bottom: 5px;
+}
+
+a {
+	text-decoration: none;
+	background-color: var(--highlight-color);
+	color: var(--background-color);
+	padding: 0 3px;
+}
+
+a:hover {
+	text-decoration: underline;
 }
