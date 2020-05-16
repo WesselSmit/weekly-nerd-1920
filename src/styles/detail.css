@@ -1,0 +1,149 @@
+@font-face {
+	font-family: NexaBold;
+	src: url(../media/fonts/Nexa-Bold.woff);
+}
+
+@font-face {
+	font-family: NexaLight;
+	src: url(../media/fonts/Nexa-Light.woff);
+}
+
+:root {
+	--background-color: white;
+	--text-color: #262628;
+	--highlight-color: #2f32ff;
+	--secondary-color: #f3f8f9;
+}
+
+*:focus {
+	outline: none;
+}
+
+#back-button span::after {
+	content: "<";
+	color: var(--background-color);
+	font-family: "NexaLight", Arial, Helvetica, sans-serif;
+	text-align: center;
+	font-size: 30px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: var(--highlight-color);
+	width: 30px;
+	height: 30px;
+	margin: 0 0 15px 0;
+}
+
+#back-button:hover span::after {
+	font-family: "NexaBold", Arial, Helvetica, sans-serif;
+}
+
+body {
+	margin: 0;
+	background-color: var(--background-color);
+}
+
+header {
+	width: 100vw;
+	text-align: center;
+	margin: 45px 0 80px 0;
+}
+
+header a {
+	margin: 10px auto 0 10px;
+	display: block;
+	width: fit-content;
+}
+
+header h1 {
+	font-family: "NexaBold", Arial, Helvetica, sans-serif;
+	font-size: 100px;
+	margin: 0;
+}
+
+header h4 {
+	font-family: "NexaLight", Arial, Helvetica, sans-serif;
+	font-size: 25px;
+	margin: 0;
+}
+
+section {
+	max-width: 800px;
+	margin: 0 auto;
+}
+
+section:last-of-type {
+	margin-bottom: 60px;
+}
+
+p {
+	font-family: "NexaLight", Arial, Helvetica, sans-serif;
+	font-size: 20px;
+	margin: 0 0 20px 0;
+	line-height: 1.2;
+}
+
+section>*:last-child {
+	margin-bottom: 0px;
+}
+
+section:first-of-type img {
+	height: 350px;
+	margin: 0 auto;
+	display: block;
+}
+
+q {
+	border-left: 4px solid var(--highlight-color);
+	padding: 5px 0 0 10px;
+	margin: 0 0 20px 0;
+	display: block;
+	font-family: "NexaLight", Arial, Helvetica, sans-serif;
+	font-size: 20px;
+}
+
+q:before,
+q:after {
+	content: "";
+}
+
+.notes {
+	background-color: var(--secondary-color);
+	padding: 10px;
+	box-sizing: border-box;
+	margin-top: 40px;
+}
+
+.notes>*:first-child {
+	margin-top: 0;
+}
+
+h2 {
+	font-family: "NexaBold", Arial, Helvetica, sans-serif;
+	font-size: 30px;
+}
+
+h3 {
+	font-family: "NexaBold", Arial, Helvetica, sans-serif;
+	font-size: 25px;
+}
+
+h5 {
+	font-family: "NexaBold", Arial, Helvetica, sans-serif;
+	font-size: 20px;
+}
+
+ul {
+	font-family: "NexaLight", Arial, Helvetica, sans-serif;
+	font-size: 20px;
+}
+
+li {
+	line-height: 1.2;
+	list-style-type: square;
+}
+
+ul p {
+	margin-left: -40px;
+	line-height: 1.2;
+}
