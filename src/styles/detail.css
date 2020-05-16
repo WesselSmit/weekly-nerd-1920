@@ -78,7 +78,7 @@ section:last-of-type {
 
 p {
 	font-family: "NexaLight", Arial, Helvetica, sans-serif;
-	font-size: 20px;
+	font-size: 18px;
 	margin: 0 0 20px 0;
 	line-height: 1.2;
 }
@@ -99,7 +99,7 @@ q {
 	margin: 0 0 20px 0;
 	display: block;
 	font-family: "NexaLight", Arial, Helvetica, sans-serif;
-	font-size: 20px;
+	font-size: 18px;
 }
 
 q:before,
@@ -135,7 +135,7 @@ h5 {
 
 ul {
 	font-family: "NexaLight", Arial, Helvetica, sans-serif;
-	font-size: 20px;
+	font-size: 18px;
 }
 
 li {
@@ -143,7 +143,12 @@ li {
 	list-style-type: square;
 }
 
+li:not(:last-of-type) {
+	margin-bottom: 5px;
+}
+
 ul p {
 	margin-left: -40px;
 	line-height: 1.2;
+	margin-bottom: 5px;
 }
