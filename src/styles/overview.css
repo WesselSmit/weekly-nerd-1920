@@ -96,7 +96,7 @@ article {
 	padding: 20px;
 	display: grid;
 	grid-template-columns: auto;
-	grid-template-rows: 200px auto;
+	grid-template-rows: 230px auto;
 	transition: all 300ms;
 	position: relative;
 }
@@ -105,6 +105,11 @@ article:hover {
 	background-color: var(--highlight-color);
 	color: var(--background-color);
 	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+article img {
+	justify-self: center;
+	align-self: center;
 }
 
 article h3 {
