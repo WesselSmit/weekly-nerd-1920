@@ -19,6 +19,187 @@
 	<main>
 		<section>
 			<h2>What is Garbage Collection?</h2>
+
+			<p>Javascript uses a process to remove objects that aren’t used anymore, this is called garbage collection
+				(GB). This process is implemented in the browser and differs slightly depending on the vendor. Some
+				browsers used to allow for manually triggering the GB process but this is considered bad-practice;
+				developers shouldn't rely on the browser to manage memory, developers should always be careful with
+				memory.
+			</p>
+
+			<q>The automaticity of garbage collection is a potential source of confusion: it can give developers the
+				false impression that they don't need to worry about memory management.</q>
+		</section>
+
+		<section>
+			<h2>Memory Life Cycle</h2>
+
+			<p>The Javascript memory life cycle is as follows:</p>
+
+			<ol>
+				<li>Allocate the memory you need</li>
+				<li>Use the allocated memory (read, write)</li>
+				<li>Release the allocated memory when it is not needed anymore</li>
+			</ol>
+		</section>
+
+		<section>
+			<h3>Allocation</h3>
+
+			<p>Since Javascript is a high-level / human readable language, instead of manually having to allocatie
+				memory Javascript does it for you. In many low-level languages this has to be done (partially) by the
+				developers.</p>
+
+			<ul>
+				<p>Javascript allocates memory:</p>
+				<li>direct; a value is initialized</li>
+				<li>indirect; a function or method creates something which then initializes a value</li>
+			</ul>
+
+			<div class="code-container">
+				<h5>Examples:</h5>
+
+				<p class="code">const string = "weekly nerd" <span>//Value is initialized </span></p>
+
+				<p class="code">const now = new Date() <span>//Constructor initializes a date object</span></p>
+
+				<p class="code">const div = document.createElement('div') <span>//Method initializes a DOM
+						element</span></p>
+			</div>
+		</section>
+
+		<section>
+			<h3>Using memory</h3>
+
+			<p>Using values means: reading and writing. Whenever you use or write a variable Javascript reads the
+				variable from memory and thus uses the allocated memory.</p>
+		</section>
+
+		<section>
+			<h3>Release memory</h3>
+
+			<p>Whenever memory is no longer needed it has to be released, this is called garbage collection. Since
+				Javascript is a high-level language it automatically releases redundant memory.</p>
+
+			<p>In order to release memory it first has to determine what memory is no longer needed, to do this
+				GB uses algorithms.</p>
+		</section>
+
+		<section>
+			<h2>Garbage Collection Algorithms</h2>
+
+			<p>GB algorithms use references to determine if memory is still needed. A reference is basically a link;
+			</p>
+
+			<div class="code-container">
+				<h5>Reference Examples:</h5>
+
+				<p class="code">const a = { text: "weekly nerds" } </p>
+
+				<p class="code">const b = a <span>//Variable 'b' now references 'a' </span></p>
+			</div>
+
+			<p>Above is a very simple example of a reference, but in reality it's a bit more difficult; objects can also
+				reference their own properties if a property value is also an object. Other examples are __proto__
+				objects. Too make it easier to understand, think of references as a link or reference a variable has to
+				another variable.</p>
+
+			<ul>
+				<p>The main GB algorithms:</p>
+				<li>reference-counting</li>
+				<li>mark-sweep</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Reference Counting algorithm</h3>
+
+			<p>This is the most simple algorithm but also the least thorough / specific. It determines if an object is
+				still needed by counting the number of references to it. If the object is not referenced by any other
+				object the algorithm deems it 'garbage' and it should be released.</p>
+
+			<img id="reference-explanation"
+				src="https://user-images.githubusercontent.com/45405413/82132311-b2694a00-97de-11ea-8209-da59af3f2d09.png"
+				alt="reference example">
+
+			<q>The above image was taken from <a
+					href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Memory_Management">mdn</a></q>
+
+			<p>The reference counting algorithm isn't completely reliable because it can run into problems. When 2
+				objects reference each other a circle of references exists; meaning both objects will never be seen as
+				'garbage' because both objects will always reference the other object.</p>
+
+			<div class="code-container">
+				<h5>Infinite Reference Example:</h5>
+
+				<p class="code">const a = { } </p>
+
+				<p class="code">const b = { } </p>
+
+				<p class="code"> a.x = b </p>
+
+				<p class="code"> b.y = a </p>
+			</div>
+
+			<p>Both objects only reference the other object and neither is used elsewehere meaning it should be
+				released, however the reference counting algorithm can't detect this as both objects are being
+				referenced and thus still seen as needed.</p>
+		</section>
+
+		<section>
+			<h3>Mark and Sweep algorithm</h3>
+
+			<p>The algorithm uses the global scope as the root (starting point), from here it finds all objects
+				referenced from the root and marks them, then it finds all objects referenced from the those marked
+				objects. This cycle is repeated until there are no new marked objects.
+			</p>
+
+			<p>This results in a lot of marked objects, all marked objects are still reachable and thus needed. It is
+				however possible that there are objects left unmarked, these are the objects that weren't reached /
+				reachable. Since they can't be reached they can't be used, if they can't be used they aren't needed and
+				they should be released.</p>
+
+			<h5>Example:</h5>
+
+			<p>The algorithm starts with the global scope (the most global object) and works it way down; it marks all
+				references then from there it marks all references, this repeats until there are no new
+				references left.</p>
+
+			<img id="mark-sweep" src="../media/images/mark-sweep-redundant.svg" alt="mark-sweep">
+
+			<p>This results in a collection of marked objects (these are blue in the above image), these objects are
+				reachable. There are also unreachable objects (these are black in the above image), these weren't
+				reachable.</p>
+
+			<p>The unreachable objects remain unmarked, these objects aren't used in any way (not referenced, not
+				readable, not writable). To preserve memory all unmarked objects should be collected (deleted).</p>
+
+			<p>In the above image both algorithms (reference-counting and mark-sweep) would collect the black
+				objects.
+			</p>
+
+			<img id="mark-sweep-loop" src="../media/images/mark-sweep-loop.svg" alt="mark-sweep">
+
+			<p>In the above image the reference-counting algorithm would not collect the black objects because they both
+				still have 1 reference (to each other). The mark-sweep algorithm can't reach the blacjk objects and will
+				collect and delete them.</p>
+
+			<p>This demonstrates why the mark-sweep algorithm is better; it resolves the infinite reference circle
+				problem.</p>
+
+			<q>As of 2012, all modern browsers ship a mark-and-sweep garbage-collector.</q>
+		</section>
+
+		<section>
+			<h2>Sources:</h2>
+
+			<ul>
+				<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Memory_Management"
+						target="blank">mdn</a></li>
+				<li><a href="https://medium.com/front-end-weekly/understanding-javascript-memory-management-using-garbage-collection-35ed4954a67f"
+						target="blank">medium</a>
+				</li>
+			</ul>
 		</section>
 	</main>
 </body>

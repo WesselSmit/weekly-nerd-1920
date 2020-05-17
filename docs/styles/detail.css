@@ -64,7 +64,7 @@ header h1 {
 header h4 {
 	font-family: "NexaLight", Arial, Helvetica, sans-serif;
 	font-size: 25px;
-	margin: 0;
+	margin: 10px 0 0 0;
 }
 
 section {
@@ -118,6 +118,28 @@ q:after {
 	margin-top: 0;
 }
 
+.code-container {
+	background-color: var(--secondary-color);
+	padding: 10px;
+	margin-bottom: 20px;
+}
+
+.code-container h5 {
+	margin: 10px 0;
+}
+
+.code {
+	font-family: monospace;
+	font-size: 15px;
+	background-color: var(--secondary-color);
+	box-sizing: border-box;
+	margin: 5px 0;
+}
+
+.code span {
+	padding-left: 20px;
+}
+
 h2 {
 	font-family: "NexaBold", Arial, Helvetica, sans-serif;
 	font-size: 30px;
@@ -164,4 +186,16 @@ a {
 
 a:hover {
 	text-decoration: underline;
+}
+
+#reference-explanation {
+	max-height: 500px;
+}
+
+#mark-sweep,
+#mark-sweep-loop {
+	max-width: 500px;
+	margin: 0 auto;
+	display: block;
+	margin-bottom: 20px;
 }
