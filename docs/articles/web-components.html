@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="../styles/detail.css" type="text/css">
+	<title>Web Components</title>
+</head>
+
+<body>
+	<header>
+		<a id="back-button" href="../index.html"><span></span></a>
+
+		<h1>Web Components</h1>
+		<h4>Custom Elements, Shadow DOM and HTML Templates</h4>
+	</header>
+
+	<main>
+		<section>
+			<h2>What are Web Components?</h2>
+
+			<p>Using multiple web API's and technologies you can create create custom, reusable, encapsulated HTML tags,
+				these are called web components (WC). If you are familiar with HTML you know the language consists of
+				<a href="https://www.w3schools.com/tags/default.asp" target="=_blank">tags</a>. All tags have their own
+				uses, behaviour and can differ in basic styling.</p>
+
+			<p>All the relied upon API's and technologies can also be used individually, they all have their own unique
+				use-cases.</p>
+
+			<p>In HTML you can also create your own tags by wrapping it in tags, for example;
+				&lt;test&gt; or &lt;example&gt;. These 'custom' elements all function the same because undewater they
+				are actually span tags/elements.</p>
+
+			<q>&lt;example&gt; is more like a semi-custom element; it has it's own tag but behaves and looks like a
+				&lt;span&gt; element. Custom Elements are defined in JS and can then be used in HTML.</q>
+
+			<p>Web Components allows us to create custom elements and assign styling and behaviour. This way your custom
+				elements have a basic styling and behaviour without stylesheets or scripts.</p>
+		</section>
+
+		<section>
+			<h2>Drawing a comparison from Web Components to HTML</h2>
+
+			<p>WC are essentially custom defined HTMl tags which come with their own standard styling and behaviour.
+				This basic styling is defined in the code where the WC is created.</p>
+
+			<p>You could look at standard HTMl tags as custom elements defined by the W3C.</p>
+
+			<p>Take the &lt;h2&gt; element for example. Without applying custom CSS rules or scripting it's: black,
+				bold, has a custom font-size and custom margin.</p>
+
+			<p>The &lt;video&gt; element also has custom attributes such as: autoplay, controls, loop, muted, poster and
+				preload. What these attributes do, how they work etcetera is all defined somewhere but it's not
+				accessible for us developers (we can only overwrite it if necessary).</p>
+		</section>
+
+		<section>
+			<h2>Advantages of Web Components</h2>
+
+			<ul>
+				<li>WC can be reused as much as you want to, you only have to define them once.</li>
+				<li>WC code/logic is encapsulated, it uses a private scope which means it isn't accessible in the global
+					scope/DOM.</li>
+				<li>WC only require basic HTML, CSS and JS. It's future proof and compatible with frameworks.</li>
+			</ul>
+
+			<ul>
+				<p>WC also improve the maintenance and readability of your code;</p>
+
+				<li>Code and logic is contained in one area. Apps are compartmentalized into smaller chunks instead of
+					one big file.</li>
+				<li>Custom elements allow for custom tag names, which makes it easier to read HTML and determine
+					which element does what:</li>
+			</ul>
+
+			<div class="code">
+				<p>&lt;div id="image-carousel"&gt;&lt;/div&gt; <span>//Standard HTML</span></p>
+
+				<p><span>//Is better readable as:</span></p>
+
+				<p>&lt;image-carousel&gt;&lt;/image-carousel&gt; <span>//Custom Element</span></p>
+			</div>
+
+		</section>
+
+		<section>
+			<h2>The Web Component building blocks</h2>
+
+			<p>As mentioned before, WC rely on a few web API's and technologies. All these API's and technologies can
+				be used on their (and have their own use-cases) own but when used together they create web components.
+			</p>
+
+			<h3>Custom Elements</h3>
+
+			<p>Custom Elements are HTML tags defined by you. You can name them, give them custom markup, styling and
+				scripts.</p>
+		</section>
+
+		<section>
+			<h2>Custom Elements</h2>
+
+			<p>to create a basic custom element you need atleast HTML and JS.</p>
+
+			<p>In the HTML you need to insert your custom element.</p>
+
+			<q>NOTE: all custom elements need to contain a dash (-) in their name. This is for the parser to indicate
+				it's a custom element. To ensure backwards compatability browser vendors have agreed to not use
+				dashes in new HMTL tags.</q>
+
+			<div class="code">
+				<p>&lt;user-card&gt;&lt;/user-card&gt;</p>
+			</div>
+
+			<p>This however won't render anything. If you insert text in the &lt;user-card&gt; element it'll show the
+				text but really it'll act as a &lt;span&gt; element. This is because the element is not a defined HTML
+				tag and thus unknown to the parser, all unknown tags inherit the properties of a &lt;span&gt; element.
+			</p>
+
+			<p>To prevent our custom element from being rendered as a &lt;span&gt; element we have to define it in JS.
+				This way the parser will find a definition of the tag and render it with the associated styling.</p>
+
+			<img src="../media/images/custom-element.png" class="screenshot">
+
+			<q>The above image shows how to define a custom element in JS</q>
+
+			<p>Since the custom element is defined in the CustomElements list the parser knows that
+				&lt;user-card&gt;&lt;/user-card&gt; should render "Wessel Smit" as defined in the associated UserCard
+				class.
+			</p>
+
+			<p>The above code is a simple demonstration, you can ofcourse do way more such as applying styling, adding
+				addEventListeners etc.</p>
+		</section>
+
+		<section>
+			<h2>Shadow DOM</h2>
+		</section>
+
+		<section>
+			<h2>HTML Templates</h2>
+		</section>
+
+		<section>
+			<h2>Sources:</h2>
+
+			<ul>
+				<li>
+					<a href="https://css-tricks.com/an-introduction-to-web-components/" target="_blank">css-tricks</a>
+				</li>
+				<li>
+					<a href="https://www.webcomponents.org/introduction" target="_blank">webcomponents</a>
+				</li>
+				<li>
+					<a href="https://www.youtube.com/watch?v=YBwgkr_Sbx0" target="_blank">google chrome developers
+						(youtube)</a>
+				</li>
+				<li>
+					<a href="https://www.youtube.com/watch?v=PCWaFLy3VUo" target="_blank">traversy media (youtube)</a>
+				</li>
+				<li>
+					<a href="https://codeburst.io/6-reasons-you-should-use-native-web-components-b45e18e069c2"
+						target="_blank">codeburst</a>
+				</li>
+				<li>
+					<a href="https://www.html5rocks.com/en/tutorials/webcomponents/customelements/"
+						target="_blank">html5rocks</a>
+				</li>
+				<li>
+					<a href="https://developers.google.com/web/fundamentals/web-components/shadowdom"
+						target="_blank">google</a>
+				</li>
+			</ul>
+		</section>
+	</main>
+</body>
+
+</html>

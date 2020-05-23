@@ -83,7 +83,7 @@ p {
 	line-height: 1.2;
 }
 
-section>*:last-child {
+section > *:last-child {
 	margin-bottom: 0px;
 }
 
@@ -107,6 +107,10 @@ q:after {
 	content: "";
 }
 
+img {
+	max-width: 800px;
+}
+
 .notes {
 	background-color: var(--secondary-color);
 	padding: 10px;
@@ -114,7 +118,7 @@ q:after {
 	margin-top: 40px;
 }
 
-.notes>*:first-child {
+.notes > *:first-child {
 	margin-top: 0;
 }
 
