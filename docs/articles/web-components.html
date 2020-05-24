@@ -4,6 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="../styles/detail.css" type="text/css">
 	<title>Web Components</title>
 </head>
@@ -210,6 +211,51 @@
 
 			<p>To show how templates work I'll use a template to render content at a later point in time, this is better
 				than the innerHTML and createElement alternatives because it's more secure and better readable.</p>
+
+			<p>First you have to create a template and define the markup inside of it, I'll do that with the following
+				HTML in my index.hmtl:</p>
+
+			<img src="../media/images/code6.png">
+
+			<q>The above code is my template, it doesn't get rendered until it's inserted in the DOM using JS</q>
+
+			<p>To render the template we have to insert it into the DOM using JS.</p>
+
+			<img src="../media/images/code7.png">
+
+			<q>The above JS code inserts the template in the DOM</q>
+
+			<p>THe following is being rendered:</p>
+
+			<img src="../media/images/preview2.png">
+
+			<p>However, if you want to use the template multiple times the above code won't work. The appendChild()
+				method will only replace the template position in the DOM with the current code.</p>
+
+			<p>To reuse the template you have to create a clone of the template which you insert in the DOM. To create a
+				clone we can use the cloneNode() or importNode() method.</p>
+
+			<img src="../media/images/code9.png">
+
+			<q>Through clones you can reuse templates</q>
+
+			<p>With cloning the following HTML is rendered:</p>
+
+			<img src="../media/images/preview3.png">
+		</section>
+
+		<section>
+			<h2>Conclusion</h2>
+
+			<p>Each web API has it's own powerful use cases, but they can also be used together to create web
+				components. Using HTML templates you can bundle markup (also styling and scripting) into one template
+				element.</p>
+
+			<p>By defining the template in the Shadow DOM you can encapsulate it and make sure it isn't affected by CSS
+				or JS outside the Shadow DOM.</p>
+
+			<p>Custom Elements are used to store everything in a custom tag. This custom element will make your code
+				easier to read and can help organize your HTML.</p>
 		</section>
 
 		<section>

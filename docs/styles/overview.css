@@ -4,8 +4,8 @@
 }
 
 @font-face {
-	font-family: NexaLight;
-	src: url(../media/fonts/Nexa-Light.woff);
+	font-family: Quicksand;
+	src: url(https://fonts.googleapis.com/css?family=Quicksand);
 }
 
 :root {
@@ -48,7 +48,7 @@ header h1 {
 }
 
 header h4 {
-	font-family: "NexaLight", Arial, Helvetica, sans-serif;
+	font-family: "Quicksand", Arial, Helvetica, sans-serif;
 	font-size: 25px;
 	margin: 0;
 }
@@ -123,7 +123,7 @@ article h3 {
 article h3::before {
 	counter-increment: article;
 	content: "0"counter(article);
-	font-family: "Nexalight", Arial, Helvetica, sans-serif;
+	font-family: "Quicksand", Arial, Helvetica, sans-serif;
 	font-size: 15px;
 	opacity: 0.75;
 	display: block;
