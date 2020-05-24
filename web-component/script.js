@@ -14,7 +14,7 @@ class UserCard extends HTMLElement {
 		this.innerHTML = "Wessel Smit"
 
 		this.addEventListener('click', () => {
-			alert('a')
+			alert('you clicked my custom element')
 		})
 	}
 }
@@ -22,3 +22,27 @@ class UserCard extends HTMLElement {
 //Define the custom element in the CustomElements list
 //Link the custom element tag-name (user-card) to the class (UserCard)
 window.customElements.define('user-card', UserCard)
+
+
+
+
+
+
+
+const shadowDOM = document.getElementById('example')
+
+shadowDOM.attachShadow({
+	mode: 'open'
+})
+
+shadowDOM.shadowRoot.innerHTML = `
+	<p>Paragraph in Shadow DOM</p>
+	<button>Button in Shadow DOM</button>
+`
+
+
+
+
+
+
+console.log("All paragraphs found:", document.querySelectorAll('p'))

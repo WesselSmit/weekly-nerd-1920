@@ -7,10 +7,86 @@
 	<title>Web Component</title>
 </head>
 
-<body>
-	<user-card></user-card>
 
-	<script src="./script.js"></script>
+
+<body>
+	<style>
+		p {
+			color: red;
+		}
+
+		button {
+			color: red;
+		}
+	</style>
+
+	<p>Paragraph in Light DOM</p>
+
+	<button>Button in Light DOM</button>
+
+	<div id="example"></div>
+
+	<script>
+		const shadowDOM = document.getElementById('example')
+
+		shadowDOM.attachShadow({
+			mode: 'open'
+		})
+
+		shadowDOM.shadowRoot.innerHTML = `
+			<p>Paragraph in Shadow DOM</p>
+			<button>Button in Shadow DOM</button>
+			`
+
+		//In the shadowDOM reference node select the shadowRoot, now you can use querySelector to query
+		const shadowP = shadowDOM.shadowRoot.querySelector('p')
+		console.log(shadowP)
+	</script>
+
 </body>
 
+
+<!-- <body>
+	<p>Paragraph in Light DOM</p>
+
+	<button>Button in Light DOM</button>
+
+	<div id="example">
+		<p>Paragraph in Shadow DOM</p>
+
+		<button>Button in Shadow DOM</button>
+	</div>
+</body> -->
+
+
+
+
+<!-- <body>
+	<user-card></user-card>
+
+	<p>Paragraph in Light DOM</p>
+
+	<button>Button in Light DOM</button>
+
+	<div id="example"></div>
+
+	<script src="./script.js"></script>
+</body> -->
+
 </html>
+
+
+
+<!-- 
+	<script>
+		const shadowDOM = document.getElementById('example')
+
+		shadowDOM.attachShadow({
+			mode: 'open'
+		})
+
+		shadowDOM.innerHTML = `
+	<p>Paragrapgh in Shadow DOM</p>
+	<button>Button in Shadow DOM</button>
+`
+	</script> -->

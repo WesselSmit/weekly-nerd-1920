@@ -135,6 +135,65 @@
 
 		<section>
 			<h2>Shadow DOM</h2>
+
+			<p>The Shadow DOM is an encapsulated version of the DOM. This means it's cut off from the normal DOM (also
+				called the light DOM).</p>
+
+			<p>The Shadow DOM functions as a sub-DOM tree to the light DOM, it's used to encapsulate markup, styles and
+				logic meaning it's used to create self-contained DOM fragments.</p>
+
+			<h3>Using Shadow DOM</h3>
+
+			<p>The following images will demonstrate how to use Shadow DOM, the left side is the code and the right side
+				is a preview of what's being rendered.</p>
+
+			<img src="../media/images/code1.png">
+
+			<q>The code above renders a simple paragraph and button, it only uses the Light DOM</q>
+
+			<img src="../media/images/code2.png">
+
+			<q>The code above renders a paragraph and button in both the Shadow and Light DOM</q>
+
+			<p>The light DOM structure now contains the Shadow DOM fragment, the Light DOM now looks like this:</p>
+
+			<img src="../media/images/code3.png">
+
+			<h3>Shadow DOM use case</h3>
+
+			<p>As mentioned before, the Shadow DOM is used to encapsulate markup, styles and logic. The advantage of
+				encapsulation is that after defining the markup, styles and logic they can't be affected outside of the
+				Shadow DOM.</p>
+
+			<p>Now that we have some HTML in both DOMs, We apply the following CSS;</p>
+
+			<img src="../media/images/code4.png">
+
+			<q>The above CSS should make all paragraph and button text red. </q>
+
+			<p>In the rendered page only the content from the Light DOM is red. This is because the content from the
+				Shadow DOM isn't accessible for the Light DOM.</p>
+
+			<img src="../media/images/preview.png">
+
+			<q>As you can see only the content from the Light DOM is red.</q>
+
+			<p>The content is accessible through JS, but you have to specifically select the ShadowRoot first.</p>
+
+			<div class="code">
+				<p>const p = document.querySelector('p:nth-of-type(2)') <span>//Select the 2nd paragraph element</span>
+				</p>
+
+				<p>console.log(p)<span>//Returns: null</span></p>
+			</div>
+
+			<p>This is because JS doesn't have access to the ShadowRoot, to access the paragraph in the ShadowRoot you
+				can't use document. Document is Light DOM only and returns errors in the Shadow DOM. To select elements
+				inside the Shadow DOM you have to replace document with the element hosting the ShadowRoot. (In our case
+				this is the ShadowDOM constant)
+			</p>
+
+			<img src="../media/images/code5.png">
 		</section>
 
 		<section>
