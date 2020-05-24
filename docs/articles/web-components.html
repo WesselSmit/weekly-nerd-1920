@@ -35,8 +35,8 @@
 			<q>&lt;example&gt; is more like a semi-custom element; it has it's own tag but behaves and looks like a
 				&lt;span&gt; element. Custom Elements are defined in JS and can then be used in HTML.</q>
 
-			<p>Web Components allows us to create custom elements and assign styling and behaviour. This way your custom
-				elements have a basic styling and behaviour without stylesheets or scripts.</p>
+			<p>Web Components allows us to create custom elements and assign markup, styling and behaviour. This way
+				your custom elements have markup, a basic styling and behaviour without stylesheets or scripts.</p>
 		</section>
 
 		<section>
@@ -88,17 +88,15 @@
 			<h2>The Web Component building blocks</h2>
 
 			<p>As mentioned before, WC rely on a few web API's and technologies. All these API's and technologies can
-				be used on their (and have their own use-cases) own but when used together they create web components.
+				be used on their own (and have their own use-cases) but when used together they create web components.
 			</p>
-
-			<h3>Custom Elements</h3>
-
-			<p>Custom Elements are HTML tags defined by you. You can name them, give them custom markup, styling and
-				scripts.</p>
 		</section>
 
 		<section>
 			<h2>Custom Elements</h2>
+
+			<p>Custom Elements are HTML tags defined by you. You can name them, give them custom markup, styling and
+				scripts.</p>
 
 			<p>to create a basic custom element you need atleast HTML and JS.</p>
 
@@ -155,7 +153,8 @@
 
 			<q>The code above renders a paragraph and button in both the Shadow and Light DOM</q>
 
-			<p>The light DOM structure now contains the Shadow DOM fragment, the Light DOM now looks like this:</p>
+			<p>The light DOM structure now contains the Shadow DOM fragment, the Light DOM now contains a piece of
+				Shadow DOM and the structure looks like this:</p>
 
 			<img src="../media/images/code3.png">
 
@@ -198,6 +197,19 @@
 
 		<section>
 			<h2>HTML Templates</h2>
+
+			<p>The big advantage of HTML templates is their reusability and their simplicity in your HMTL files.
+				Template elements aren't rendered by default, this means you can use them to store markup for later use.
+				This prevents the hassle of creating markup in JS.</p>
+
+			<ul>
+				<p>The 2 most common use cases fot HTML Templates are</p>
+				<li>storing markup which will be rendered at a later point in time</li>
+				<li>creating a basic markup foundation which is filled with content in an array iteration</li>
+			</ul>
+
+			<p>To show how templates work I'll use a template to render content at a later point in time, this is better
+				than the innerHTML and createElement alternatives because it's more secure and better readable.</p>
 		</section>
 
 		<section>
@@ -231,6 +243,10 @@
 				<li>
 					<a href="https://developers.google.com/web/fundamentals/web-components/shadowdom"
 						target="_blank">shadow dom (google)</a>
+				</li>
+				<li>
+					<a href="https://www.youtube.com/watch?v=mfN-EOkj13Q" target="_blank">html templates (steve griffith
+						:youtube)</a>
 				</li>
 			</ul>
 		</section>

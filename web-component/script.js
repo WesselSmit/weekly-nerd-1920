@@ -29,20 +29,48 @@ window.customElements.define('user-card', UserCard)
 
 
 
-const shadowDOM = document.getElementById('example')
+// const shadowDOM = document.getElementById('example')
 
-shadowDOM.attachShadow({
-	mode: 'open'
-})
+// shadowDOM.attachShadow({
+// 	mode: 'open'
+// })
 
-shadowDOM.shadowRoot.innerHTML = `
-	<p>Paragraph in Shadow DOM</p>
-	<button>Button in Shadow DOM</button>
-`
-
-
+// shadowDOM.shadowRoot.innerHTML = `
+// 	<p>Paragraph in Shadow DOM</p>
+// 	<button>Button in Shadow DOM</button>
+// `
 
 
 
 
-console.log("All paragraphs found:", document.querySelectorAll('p'))
+
+
+
+
+// console.log("All paragraphs found:", document.querySelectorAll('p'))
+
+const users = [{
+	firstname: "John",
+	surname: "Doe"
+}, {
+	firstname: "Anne",
+	surname: "Smith"
+}, {
+	firstname: "Dan",
+	surname: "Evans"
+}]
+
+const template = document.querySelector('template')
+
+function userCards() {
+	users.forEach(user => {
+		const card = document.importNode(template.content, true)
+
+		const firstName = card.querySelector('.firstname')
+		firstName.textContent = user.firstName
+
+		console.log(card)
+	})
+}
+
+userCards()

@@ -10,7 +10,7 @@
 
 
 <body>
-	<style>
+	<!-- <style>
 		p {
 			color: red;
 		}
@@ -24,9 +24,9 @@
 
 	<button>Button in Light DOM</button>
 
-	<div id="example"></div>
+	<div id="example"></div> -->
 
-	<script>
+	<!-- <script>
 		const shadowDOM = document.getElementById('example')
 
 		shadowDOM.attachShadow({
@@ -40,13 +40,33 @@
 
 		//In the shadowDOM reference node select the shadowRoot, now you can use querySelector to query
 		const shadowP = shadowDOM.shadowRoot.querySelector('p')
-		console.log(shadowP)
-	</script>
 
+		console.log(shadowP) //Returns the <p> in the Shadow DOM
+	</script> -->
+
+
+
+	<template>
+		<ul>
+			<li>created</li>
+			<li>with</li>
+			<li>an</li>
+			<li>html</li>
+			<li>template</li>
+		</ul>
+	</template>
+
+
+	<script src="./script.js"></script>
 </body>
 
 
-<!-- <body>
+
+
+
+
+<!-- 
+<body>
 	<p>Paragraph in Light DOM</p>
 
 	<button>Button in Light DOM</button>
