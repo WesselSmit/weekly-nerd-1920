@@ -119,7 +119,7 @@
 			<p>To prevent our custom element from being rendered as a &lt;span&gt; element we have to define it in JS.
 				This way the parser will find a definition of the tag and render it with the associated styling.</p>
 
-			<img src="../media/images/custom-element.png" class="screenshot">
+			<img src="../media/images/gh1.png">
 
 			<q>The above image shows how to define a custom element in JS</q>
 
@@ -176,7 +176,7 @@
 
 			<p>Now that we have some HTML in both DOMs, We apply the following CSS;</p>
 
-			<img src="../media/images/code4.png">
+			<img src="../media/images/gh2.png">
 
 			<q>The above CSS should make all paragraph and button text red. </q>
 
@@ -189,12 +189,8 @@
 
 			<p>The content is accessible through JS, but you have to specifically select the ShadowRoot first.</p>
 
-			<div class="code">
-				<p>const p = document.querySelector('p:nth-of-type(2)') <span>//Select the 2nd paragraph element</span>
-				</p>
+			<img src="../media/images/gh3.png">
 
-				<p>console.log(p)<span>//Returns: null</span></p>
-			</div>
 
 			<p>This is because JS doesn't have access to the ShadowRoot, to access the paragraph in the ShadowRoot you
 				can't use document. Document is Light DOM only and returns errors in the Shadow DOM. To select elements
@@ -202,7 +198,7 @@
 				this is the ShadowDOM constant)
 			</p>
 
-			<img src="../media/images/code5.png">
+			<img src="../media/images/gh4.png">
 		</section>
 
 		<section>
@@ -224,13 +220,13 @@
 			<p>First you have to create a template and define the markup inside of it, I'll do that with the following
 				HTML in my index.hmtl:</p>
 
-			<img src="../media/images/code6.png">
+			<img src="../media/images/gh5.png">
 
 			<q>The above code is my template, it doesn't get rendered until it's inserted in the DOM using JS</q>
 
 			<p>To render the template we have to insert it into the DOM using JS.</p>
 
-			<img src="../media/images/code7.png">
+			<img src="../media/images/gh6.png">
 
 			<q>The above JS code inserts the template in the DOM</q>
 
@@ -244,7 +240,7 @@
 			<p>To reuse the template you have to create a clone of the template which you insert in the DOM. To create a
 				clone we can use the cloneNode() or importNode() method.</p>
 
-			<img src="../media/images/code9.png">
+			<img src="../media/images/gh7.png">
 
 			<q>Through clones you can reuse templates</q>
 
