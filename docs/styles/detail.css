@@ -208,3 +208,15 @@ a:hover {
 	display: block;
 	margin-bottom: 20px;
 }
+
+details,
+details summary {
+	font-family: "NexaLight", Arial, Helvetica, sans-serif;
+	cursor: pointer;
+	margin-top: 10px;
+}
+
+
+details>* {
+	padding-top: 20px;
+}

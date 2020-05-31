@@ -138,6 +138,15 @@
 			<p>The Shadow DOM is an encapsulated version of the DOM. This means it's cut off from the normal DOM (also
 				called the light DOM).</p>
 
+			<p>The advantage of using the Shadow DOM is that it's content is seperated/inaccessible we call this
+				encapsulated. Basically the Shadow DOM is more difficult to access and is helpful for creating a
+				component and prevent it from inheriting styles or logic from other elements.</p>
+
+			<p>It's really difficult to directly manipulate an element in the Shadow DOM outside of the Shadow DOM code.
+				Styles have to be written in the Shadow DOM itself or the Shadow DOM needs to contain a link to the
+				Light DOM styling. (NOTE: Shadow DOM content does inherit properties from their parent elements in the
+				Light DOM)</p>
+
 			<p>The Shadow DOM functions as a sub-DOM tree to the light DOM, it's used to encapsulate markup, styles and
 				logic meaning it's used to create self-contained DOM fragments.</p>
 
@@ -241,7 +250,143 @@
 
 			<p>With cloning the following HTML is rendered:</p>
 
-			<img src="../media/images/preview3.png">
+			<img src="../media/images/preview3.png" height="500px">
+		</section>
+
+		<section>
+			<h2>Putting it all together</h2>
+
+			<p>No that I've briefly explained the building blocks for web components and their individual uses, let's
+				examine a example.</p>
+
+			<p>The following web component is to show urgent-announcements in a new project of mine. It looks like this:
+			</p>
+
+			<img src="../media/images/education-portal.png" height="500px">
+
+			<img src="../media/images/urgent-announcement.png">
+
+			<q>Above is the UI and the urgent-announcement web component</q>
+
+			<p>The web component is a notification which shows up at the top of the page. It has a message and close
+				button; clicking the close button hides the notification.</p>
+
+			<h3>How does it work?</h3>
+
+			<h5>Creating the template</h5>
+
+			<p>First I created a template, this contains the styling and markup.</p>
+
+			<img src="../media/images/wc.png">
+
+			<q>This code contains the styling and markup (HTML) for the web component</q>
+
+			<p>Other styling such as the custom font used in the component are inherited from the parent elements. This
+				is useful because without it we'd have to @font-face it again only to use it in the web component, which
+				would just be a waste of data.</p>
+
+			<h5>Defining the template as a custom element</h5>
+
+			<p>To be able to put the webcomponent in our HTML we'd have to define it as a custom element. To do this we
+				create a class which we define in the window's customElements property.</p>
+
+			<img src="../media/images/defineCE.png">
+
+			<q>Regsiter the custom element as &lt;urgent-announcement&gt;</q>
+
+			<p>After registering the class as a custom element we can use it in HTML, however the element as of yet is
+				completely empty.</p>
+
+			<h5>Initializing the web component</h5>
+
+			<p>The zero state of the component is empty and hidden, the markup and styling in the template however will
+				show whenever the element is inserted into the DOM. We also want the web component to live in the Shadow
+				DOM instead of the Light DOM.</p>
+
+			<p>We do this in the constructor() which is only used whenever the web component is Initialized. Always call
+				super() first to inherit all properties of the class you're extending!</p>
+
+			<p>First we want to attach a shadowDOM to the custom element. Then we clone and insert the content of our
+				template into the web component, lastly we set the textContent of the notification (there is no content
+				as of yet so it'll insert "").</p>
+
+			<img src="../media/images/wc5.png">
+
+			<h5>Receiving new data from the server</h5>
+
+			<p>I wanted an element which updates itself with the data it receives from the server. So I use
+				<a href="https://socket.io/index.html" target=_blank>socketIO</a> to send data to the clients without
+				refreshing the page.
+			</p>
+
+			<img src="../media/images/code10a.png">
+
+
+			<p>The above code is the HTML code, it's the registered custom element called urgent-announcement. It has a
+				message
+				attribute which contains the message it displays and it has an uid attribute to identify the
+				notification.</p>
+
+			<p>On the clientside I listen to the urgent-announcement event which is emitted by the server whenever it
+				sends data, when it receives a notification this function triggers. It then overwrites the message & uid
+				attribute values with the content of the new data.</p>
+
+			<img src="../media/images/code11.png">
+
+			<q>The above endpoint receives data from the server</q>
+
+			<p>The displaying of the message & keeping track of show/hide state is done in the web component itself
+				(encapsulated in the Shadow DOM).</p>
+
+			<h5>Updating the web component</h5>
+
+			<p>Whenever the server has a new notification it gets sent to the client using socketIO. On the client the
+				urgent-announcement element message & uid attributes are overwritten with the new data from the server.
+			</p>
+
+			<p>Inside the custom element we want to trigger an update whenever the client receives new data. Since our
+				function updates the message & uid properties we can simply watch these attributes in our class.</p>
+
+			<img src="../media/images/wc1.png">
+
+			<p>The observedAttributes() method watches the passed attributes, in our case we only watch uid (we
+				deliberately don't watch messagage because this would trigger everything twice).</p>
+
+			<p>Whenever one of the observed attributes is changed the attributeChangedCallback gets invoked. In here we
+				can control what actions we want to undertake.
+			</p>
+
+			<img src="../media/images/wc3.png">
+
+			<q>Watch for changes and invoke methods to reflect the attribute changes in the UI</q>
+
+			<p>We use methods to manipulate the web component, all methods use the 'this' keyword which references the
+				webcomponent host (&lt;urgent-announcement&gt;).
+			</p>
+
+			<img src="../media/images/wc4.png">
+
+			<q>Add methods to: update the content, show and hide the component respectively</q>
+
+			<p>The only thing we have't done is listening to the close button events, we need to know if people have
+				clicked to dismiss the notification.</p>
+
+			<p>We can add an eventListener in the construcor(), when triggered we hide the web component.</p>
+
+			<q>NOTE: we could've also used the connectedCallback to add EventListeners, and the disconectedCallback to
+				remove the eventListener.</q>
+
+			<img src="../media/images/wc6.png">
+
+			<details>
+				<summary>Full Web component code</summary>
+
+				<img src="../media/images/socket.png">
+
+				<img src="../media/images/wc7.png">
+				<img src="../media/images/wc8.png">
+
+			</details>
 		</section>
 
 		<section>
