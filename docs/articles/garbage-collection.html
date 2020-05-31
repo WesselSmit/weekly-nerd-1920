@@ -57,16 +57,8 @@
 				<li>indirect; a function or method creates something which then initializes a value</li>
 			</ul>
 
-			<div class="code-container">
-				<h5>Examples:</h5>
+			<img src="../media/images/gh11.png">
 
-				<p class="code">const string = "weekly nerd" <span>//Value is initialized </span></p>
-
-				<p class="code">const now = new Date() <span>//Constructor initializes a date object</span></p>
-
-				<p class="code">const div = document.createElement('div') <span>//Method initializes a DOM
-						element</span></p>
-			</div>
 		</section>
 
 		<section>
@@ -92,13 +84,8 @@
 			<p>GB algorithms use references to determine if memory is still needed. A reference is basically a link;
 			</p>
 
-			<div class="code-container">
-				<h5>Reference Examples:</h5>
+			<img src="../media/images/gh10.png">
 
-				<p class="code">const a = { text: "weekly nerds" } </p>
-
-				<p class="code">const b = a <span>//Variable 'b' now references 'a' </span></p>
-			</div>
 
 			<p>Above is a very simple example of a reference, but in reality it's a bit more difficult; objects can also
 				reference their own properties if a property value is also an object. Other examples are __proto__
@@ -119,28 +106,20 @@
 				still needed by counting the number of references to it. If the object is not referenced by any other
 				object the algorithm deems it 'garbage' and it should be released.</p>
 
-			<img id="reference-explanation"
-				src="https://user-images.githubusercontent.com/45405413/82132311-b2694a00-97de-11ea-8209-da59af3f2d09.png"
-				alt="reference example">
+			<img src="../media/images/gh8.png">
 
-			<q>The above image was taken from <a
+			<q>The above code was taken from <a
 					href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Memory_Management">mdn</a></q>
 
 			<p>The reference counting algorithm isn't completely reliable because it can run into problems. When 2
 				objects reference each other a circle of references exists; meaning both objects will never be seen as
 				'garbage' because both objects will always reference the other object.</p>
 
-			<div class="code-container">
-				<h5>Infinite Reference Example:</h5>
+			<img src="../media/images/gh9.png">
 
-				<p class="code">const a = { } </p>
+			<q>In the above code both object have a property referencing the other and thus creating a infinite
+				reference</q>
 
-				<p class="code">const b = { } </p>
-
-				<p class="code"> a.x = b </p>
-
-				<p class="code"> b.y = a </p>
-			</div>
 
 			<p>Both objects only reference the other object and neither is used elsewehere meaning it should be
 				released, however the reference counting algorithm can't detect this as both objects are being
