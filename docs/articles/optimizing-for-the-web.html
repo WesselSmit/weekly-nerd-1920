@@ -14,12 +14,248 @@
 		<a id="back-button" href="../index.html"><span></span></a>
 
 		<h1>Optimizing for the Web</h1>
-		<h4>subtitle</h4>
+		<h4>Steps to make your website faster and more efficient</h4>
 	</header>
 
 	<main>
 		<section>
-			<h2>title</h2>
+			<h2>Why should I optimize my website?</h2>
+
+			<p>To optimize your website you have a wide range of options, most of these will take some effort for the
+				developers but in the end it's worth the effort for the users. Other optimisations are low hanging fruit
+				and barely require effort.</p>
+
+			<q>NOTE: this article is not a full guide which covers 100% of all optimization options, it'll however cover
+				a few topics which can drastically improve your website's performance.</q>
+		</section>
+
+		<section>
+			<h2>Conceptual optimalizations</h2>
+
+			<p>Before optimizing code you should always take a step back and critically review your design/concept.
+				Sometimes the largest optimisations are small redesigns of components or slightly changing your concept.
+			</p>
+
+			<p>A example of this would be my <a href="https://nasa-astronomy-pictures.herokuapp.com/"
+					target="_blank">NASA Astronomy Pictures of the Year app</a>; it's an app which updates itself daily
+				with a new image from the <a href="https://apod.nasa.gov/apod/astropix.html" target="_blank">NASA APOD
+					API</a>. To do this it fetches all images from the API of the current year, these images are huge in
+				size and depending on the date of the year the app needs to fetch up to 365 images!</p>
+
+			<p>This made the app's initial load very slow and users often thought it was crashing instead of fetching. I
+				decided to divide the images into months, this way the app only had to fetch up to 31 pictures at a
+				time. This made a huge difference for the performance but also provided a better user experience. Users
+				now had the ability to view the images per month which they really liked since it gave them more control
+				and a better overview!</p>
+
+			<p>Sometimes conceptual changes can both improve performance and user experience, this is not to say that
+				all performance heavy concept should be scraped, but atleast revision it once to see if there are better
+				options you may have overlooked whilst designing.</p>
+		</section>
+
+		<section>
+			<h2>Code Stack</h2>
+
+			<p>When developing a website it's easy to give into all technologies major corporations and big websites
+				like to use, but you should be critical of using frameworks/libraries etc. Before deciding to use
+				outside code (framework/library) consider if you really need it, do you really need the whole library or
+				only a few small parts of it?</p>
+
+			<p>Many frameworks are great, they offer fantastic services and can make your life a bit easier whilst
+				developing. But if you're only making a static single page app which only serves static HTML files; is
+				it really worth loading the whole React framework?</p>
+
+			<h3>Only use the parts you need</h3>
+
+			<p>Libraries often allow you to only import parts/functions of the library. Take <a href="https://d3js.org/"
+					target="_blank">d3</a> for example, the d3 library offers a lot of functionalities for different
+				visualisations, but often you only need a few parts. If you only want to load a csv file and convert it
+				to a json file you can just import a single function from the library.</p>
+
+			<p>This problem is even bigger with NodeJS since it's so incredibly easy to use packages. It's wise to check
+				if you really need the package and once in a while check if you have any unused packages installed.</p>
+
+			<q>Mindlessly using external code such as libraries and frameworks will bloat your app. Always be critical
+				first and consider if it's worth using and how much you'll actually need.</q>
+		</section>
+
+		<section>
+			<h2>Efficient code</h2>
+
+			<p>Personally my first goal when I am working on a new feature on my website is to get it working, then I'll
+				rewrite it to be more efficient. For example; instead of fetching all data every time a user clicks on a
+				carousel navigation arrow; fetch all data once and store it in a variable for further use.</p>
+
+			<p>Refactoring youf code like this can prove to be very significant for the performance, to take it a step
+				further (this might be overkill for very small applications) most goals in code can be accomplished in
+				multiple ways. There are many methods such as: map, forEach and for loops which cana be used to achieve
+				the same goal, they are however all different and function in different ways, for big tasks it is worth
+				checking which method is the fastest.</p>
+
+			<p>Iterating over an array with more than 1000 items is performance heavy and it's worth checking if the
+				method you're using is really the best way to go at it.</p>
+
+			<h3>Automatic optimalizations</h3>
+
+			<p>When developing server side (or even clientside using external resources) it's possible to automatically
+				let your code be refactored to be more efficient. Your code will still work the same and do the same
+				things (it'll also still have that bug you widh would magically dissapear) but it'll be smaller in file
+				size. These rewrites/optimalizations can be seen as a computer rewriting your code and taking away it's
+				human readability. It'll be difficult to read for us but for computers this won't matter.</p>
+
+			<h5>Compression</h5>
+
+			<p>Compressing is a process in which something gets smaller but doesn't lose it's value. It's basically a
+				process of making something more efficient without losing anything.</p>
+
+			<q>NOTE: images are also compressable but I'll get to this later in the article</q>
+
+			<p>When talking about compressing code there are a multiple degrees to which you can go.</p>
+
+			<p>For example HTML is often compressed on the server side, the script which'll compress the HTML will
+				remove whitespace, comments, quotes etc. All these things can be removed from your code without it
+				resulting the end result, it's however faster for parsers since there are less characters to be read.
+			</p>
+
+			<img src="https://user-images.githubusercontent.com/45405413/83970090-03e39100-a8d4-11ea-8896-b946d60f4846.png"
+				width="800px">
+
+			<q>Normal HTML written by developer</q>
+
+			<img src="https://user-images.githubusercontent.com/45405413/83970087-0219cd80-a8d4-11ea-9c27-cb30bd43c0f2.png"
+				width="800px">
+
+			<q>The same HTML compressed</q>
+
+			<h5>Uglify/Minify</h5>
+
+			<p>This process takes minifying a step further, this can't be done with HTMl but it's often used with CSS
+				and JS. It'll rewrite your code to a degree you won't be able to read it anymore; variables, function
+				names, object keys will be renamed to a, b, c etc. The main focus is to replace all custom names (names
+				the developers gave to variables and functions etc.) with the shortest options available. Once again,
+				these names help us humans read code but computers don't need it.</p>
+
+			<img src="https://user-images.githubusercontent.com/45405413/83970290-43f74380-a8d5-11ea-9a74-684e7c97d145.png"
+				width="800px">
+
+			<q>Normal JS written by developer</q>
+
+			<img src="https://user-images.githubusercontent.com/45405413/83970292-45c10700-a8d5-11ea-8eab-ca479e5c778e.png"
+				width="800px">
+
+			<q>The same JS compressed</q>
+
+			<p>These automatic optimizalitions can be done online through converters or if you have access to the server
+				side you can use build scripts such with task managers such as gulp.</p>
+		</section>
+
+		<section>
+			<h2>Loading JS and external scripts</h2>
+
+			<p>When loading scripts you have a few options, you can do it in the HEAD which is blocking and slows down
+				your website, you can do it in the body (preferrably in the tail) this will load the script after the
+				HTML is loaded. Another option is to load the script in the header but to do it asynchronous so it won't
+				slow down your website.</p>
+
+			<img src="https://user-images.githubusercontent.com/45405413/83970473-2f677b00-a8d6-11ea-8c56-1b3f3b07d03b.png"
+				width="800px">
+
+			<q>If you load your script in the HEAD, be sure to use the defer attribute to make it async</q>
+		</section>
+
+		<section>
+			<h2>Optimizing images</h2>
+
+			<p>Many websites uses images alongside their content, these often take up way more space than they should
+				because most people don't optimize their images for the web.</p>
+
+			<p>Let's llok bake at my <a href="https://nasa-astronomy-pictures.herokuapp.com/" target="_blank">NASA
+					Astronomy Pictures of the Year app</a>. This app relies on images as the main content, to optimize
+				the images they underwent a small process.</p>
+
+			<h3>1. Downloading images</h3>
+
+			<p>Instead of linking to external resources as the img src, I download the images whenever the server starts
+				up, then I store the downloaded JPG images in a file on the server. These locally stored images are used
+				in the img src's. Local is faster then external.</p>
+
+			<h3>2. Image Format</h3>
+
+			<p>JPG, PNG are the most used image formats but they aren't the most efficient! Google introduced <a
+					href="https://developers.google.com/speed/webp" target="_blank">webP</a> which is an alternative
+				format. Not all modern browsers support webP but it's way smaller in file size than JPG so if the
+				browser supports the format it's worth the switch.
+			</p>
+
+			<p>Using Gulp we can convert the downloaded JPG images to webP (and other formats), this reduces the file
+				size through smarter encoding and (unless you've cranked the settings up a lot) won't impact the
+				quality.</p>
+
+			<p>Using the picture element we can use different image sources (and formats) and have an enhanced image if
+				the browser supports it. The way the picture element works; it'll try to use the first source, if this
+				isn't the right dimensions or the format isn't supported it'll try to use the next source. If the next
+				source fails it continues until there are no more sources left, then it'll show the backup text element.
+			</p>
+
+			<h3>3. Image Thumbnails</h3>
+
+			<p>As mentioned above; picture elements can take multiple sources. The different sources can be different
+				formats but also different sizes/dimensions. If we once again take a look at my NASA app we use each
+				image for 2 purposes; small (350px by 350px) as a thumbnail in the overview page, and big on it's detail
+				page.</p>
+
+			<p>Using Gulp we could make a smaller image counterpart for all images, this will be 350px by 350px and only
+				act as a thumbnail in the overview page. This way the big/highly detailed images are only loaded
+				whenever the user navigates to a detail page.</p>
+
+			<img
+				src="https://user-images.githubusercontent.com/45405413/77421554-5250bb80-6dcc-11ea-9aa2-b8c30c818472.png">
+
+			<q>The bigger images are only used if the user goes to a detail page, otherwise the thumbnails are shown</q>
+		</section>
+
+		<section>
+			<h3>Caching pages</h3>
+
+			<p>Using a service worker you can cache pages and assets, this basically means that the browser will store a
+				local version of your assets. This improves the performance of a website because instead of asking for
+				the assets through GEt requests over the internet, the service worker can intercept and use the cached
+				assets instead.</p>
+
+			<p>A smart way to implement caching in the NASA app example is to make a new cache name each day, this way
+				every day the cache will be renewed and ensures that every day the newest images are shown. However,
+				after the initial visit on that day the browser will cache all visited pages and it's assets. If the
+				user comes back later that day to one of the same pages the browser can serve them from the cache.</p>
+
+			<q>Service Workers can also be used for other purposes which increase the user experience and performance of
+				your website</q>
+		</section>
+
+		<section>
+			<h2>Conclusion</h2>
+
+			<p>Perofmance matters and most of the time the changes are very minimal but come with huge differences for
+				the user. Be smart about what you use, what you need and how it affects your website.</p>
+
+			<p>Once again, the above suggestions aren't a full guide. There are way more steps you can undertake to
+				improve the performance.</p>
+
+			<q>Bandwith ain't free and we should tread carefully!</q>
+		</section>
+
+		<section>
+			<h2>Sources:</h2>
+
+			<ul>
+				<li>
+					<a href="https://stackoverflow.com/questions/21417014/npm-command-to-uninstall-or-prune-unused-packages-in-node-js"
+						target="_blank">uninstall unused packages in nodeJS (stackoverflow)</a>
+				</li>
+				<li>
+					<a href="https://developers.google.com/speed/webp" target="_blank">webp image format (google
+						developers)</a>
+				</li>
+			</ul>
 		</section>
 	</main>
 </body>
